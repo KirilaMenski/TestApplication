@@ -7,7 +7,7 @@
 <title>Menu</title>
 </head>
 <body>	
-<a href="list">Посмотреть всех пользователей</a>
+<a href="list_1">Посмотреть всех пользователей</a>
 <br/><br/>
 <a href="add">Добавить пользователя</a>
 </body>
