@@ -33,9 +33,9 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Transactional
-	public List<User> getAllUser() throws SQLException {
+	public List<User> getAllUser(int numb) throws SQLException {
 		List<User> allUsers = new ArrayList<User>();
-				allUsers = userDAO.getAllUser();
+				allUsers = userDAO.getAllUser(numb);
 		return allUsers;
 	}
 

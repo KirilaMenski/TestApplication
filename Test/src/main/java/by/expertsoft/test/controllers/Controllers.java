@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -24,13 +25,13 @@ public class Controllers {
 		return "menu";
 	}
 	
-	@RequestMapping(value="/list")
-	public ModelAndView doList(){
+	@RequestMapping(value="/list_{numb}")
+	public ModelAndView doList(@PathVariable int numb){
 		ModelAndView mav = new ModelAndView();
 		
 		List<User> allUsers;
 		try {
-			allUsers = userService.getAllUser();
+			allUsers = userService.getAllUser(numb);
 			
 			mav.addObject("users", allUsers);
 			mav.setViewName("list");
@@ -49,4 +50,5 @@ public class Controllers {
 	private User populateUser(){
 		return new User();
 	}
+
 }

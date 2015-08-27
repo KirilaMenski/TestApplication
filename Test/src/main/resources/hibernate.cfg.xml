@@ -16,6 +16,6 @@
 		<property name="connection.password">yj55</property>
 
 
-		<!-- <mapping class="by.expertsoft.test.entity" />-->
+		<mapping class="by.expertsoft.test.entity.User" />
 	</session-factory>
 </hibernate-configuration>
