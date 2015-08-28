@@ -31,6 +31,13 @@ public class UserServiceImpl implements UserService {
 	public void deleteUser(User user) throws SQLException {
 		userDAO.deleteUser(user);
 	}
+	
+	@Transactional
+	public List<User> getAllUser() throws SQLException {
+		List<User> allUsers = new ArrayList<User>();
+				allUsers = userDAO.getAllUser();
+		return allUsers;
+	}
 
 	@Transactional
 	public List<User> getAllUser(int numb) throws SQLException {
@@ -40,8 +47,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Transactional
-	public List<User> sortByColumnName(String colName) throws SQLException {
-		List<User> assortedVal = userDAO.sortByColumnName(colName);
+	public List<User> sortByColumnName(String colName, int numb) throws SQLException {
+		List<User> assortedVal = userDAO.sortByColumnName(colName, numb);
 		return assortedVal;
 	}
 

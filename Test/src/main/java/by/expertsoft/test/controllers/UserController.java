@@ -1,6 +1,7 @@
 package by.expertsoft.test.controllers;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,13 +23,16 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
-	@RequestMapping(value="/sorting_{colName}")
-	public String sortByColName(@PathVariable String colName, Model model){
+	@RequestMapping(value="/sorting_{colName}_{numb}")
+	public String sortByColName(@PathVariable String colName, @PathVariable int numb, Model model){
 		
-		List<User> assortedVal;
+		List<User> assortedUsers;
+		List<User> allAssortedUsers;
+		List<Integer> numbPages = new ArrayList<Integer>();
 		try{
-			assortedVal = userService.sortByColumnName(colName);
-			model.addAttribute("users", assortedVal);
+			assortedUsers = userService.sortByColumnName(colName, numb);
+			
+			model.addAttribute("users", assortedUsers);
 		}catch(Exception e){
 			e.printStackTrace();
 		}
@@ -44,7 +48,7 @@ public class UserController {
 		readerCSV.convertToBD(request.getParameter("title"));
 		System.out.println(request.getParameter("title"));
 		
-		return "redirect:/list";
+		return "redirect:/list_1";
 	}
 
 }

@@ -17,7 +17,7 @@ public class UserDAOImpl implements UserDAO {
 
 	@Autowired
 	private SessionFactory sessionFactory;
-	public static final int MAX_RES = 5;
+	public static final int MAX_RES = 10;
 
 	public void addUser(User user) throws SQLException {
 		try {
@@ -45,11 +45,10 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<User> getAllUser(int numb) throws SQLException {
+	public List<User> getAllUser() throws SQLException {
 		List<User> allUsers = new ArrayList<User>();
 		try {
-			allUsers = currentSession().createQuery("FROM User")
-					.setFirstResult(numb * MAX_RES - MAX_RES).setMaxResults(MAX_RES).list();
+			allUsers = currentSession().createQuery("FROM User").list();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -57,33 +56,51 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<User> sortByColumnName(String colName) throws SQLException {
+	public List<User> getAllUser(int numb) throws SQLException {
+		List<User> allUsers = new ArrayList<User>();
+		try {
+			allUsers = currentSession().createQuery("FROM User")
+					.setFirstResult(numb * MAX_RES - MAX_RES)
+					.setMaxResults(MAX_RES).list();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return allUsers;
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<User> sortByColumnName(String colName, int numb) throws SQLException {
 		List<User> assortedVal = new ArrayList<User>();
 		switch (colName.toLowerCase()) {
 		case "name":
 			assortedVal = currentSession()
 					.createQuery("SELECT u FROM User u ORDER BY u.name")
-					.setFirstResult(0).setMaxResults(5).list();
+					.setFirstResult(numb * MAX_RES - MAX_RES)
+					.setMaxResults(MAX_RES).list();
 			break;
 		case "surname":
 			assortedVal = currentSession()
 					.createQuery("SELECT u FROM User u ORDER BY u.surname")
-					.setFirstResult(0).setMaxResults(5).list();
+					.setFirstResult(numb * MAX_RES - MAX_RES)
+					.setMaxResults(MAX_RES).list();
 			break;
 		case "login":
 			assortedVal = currentSession()
 					.createQuery("SELECT u FROM User u ORDER BY u.login")
-					.setFirstResult(0).setMaxResults(5).list();
+					.setFirstResult(numb * MAX_RES - MAX_RES)
+					.setMaxResults(MAX_RES).list();
 			break;
 		case "email":
 			assortedVal = currentSession()
 					.createQuery("SELECT u FROM User u ORDER BY u.email")
-					.setFirstResult(0).setMaxResults(5).list();
+					.setFirstResult(numb * MAX_RES - MAX_RES)
+					.setMaxResults(MAX_RES).list();
 			break;
 		case "phonenumber":
 			assortedVal = currentSession()
 					.createQuery("SELECT u FROM User u ORDER BY u.phoneNumber")
-					.setFirstResult(0).setMaxResults(5).list();
+					.setFirstResult(numb * MAX_RES - MAX_RES)
+					.setMaxResults(MAX_RES).list();
 			break;
 
 		}
@@ -93,5 +110,11 @@ public class UserDAOImpl implements UserDAO {
 	public Session currentSession() {
 		Session currentSession = sessionFactory.getCurrentSession();
 		return currentSession;
+	}
+
+	@Override
+	public List<User> sortByColumnName(String colName) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
