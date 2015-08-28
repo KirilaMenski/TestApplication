@@ -27,4 +27,22 @@ public class UsersConvertImpl implements UsersConvert {
 		}
 	}
 
+	public void editUsers(User user) throws SQLException {
+		Session session = null;
+		
+		try{
+			session = HibernateUtil.getSessionFactory().openSession();
+			session.beginTransaction();
+			session.update(user);
+			session.getTransaction().commit();
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			if(session != null & session.isOpen()){
+				session.close();
+			}
+		}
+		
+	}
+
 }
