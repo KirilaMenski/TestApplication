@@ -6,6 +6,15 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+ul {
+	list-style: none;
+}
+
+ul li {
+	float: left;
+}
+</style>
 </head>
 <body>
 	<a href="menu">Меню</a>
@@ -29,9 +38,14 @@
 			</tr>
 		</c:forEach>
 	</table>
-	
+
 	<br />
-	 <a href="list_1">1</a> <a href="list_2">2</a> <a href="list_3">3</a>
+	<c:forEach items="${numb}" var="numb">
+		<ul>
+			<li>-</li>
+			<li><a href="list_${numb}">${numb}</a></li>
+		</ul>
+	</c:forEach>
 	<br />
 	<a href="add">Добавить пользователя</a>
 
