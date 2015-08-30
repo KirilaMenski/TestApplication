@@ -13,6 +13,8 @@ import by.expertsoft.test.entity.User;
 import by.expertsoft.test.util.ConnectionPool;
 
 public class UserDAOImpl implements UserDAO {
+	
+	public static final int MAX_RES = 10;
 
 	public void addUser(User user) throws SQLException {
 		Connection connection = null;
