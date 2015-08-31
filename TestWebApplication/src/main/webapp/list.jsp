@@ -20,12 +20,12 @@ ul li {
 	<a href="index.jsp">Меню</a>
 	<table border="1">
 		<tr>
-			<th>ID</th>
-			<th><a href="sorting_name">Имя</a></th>
-			<th><a href="sorting_surname">Фамилия</a></th>
-			<th><a href="sorting_login">Логин</a></th>
-			<th><a href="sorting_email">E-mail</a></th>
-			<th><a href="sorting_phoneNumber">Телефон</a></th>
+			<th><a href="listPage?colName=id">ID</a></th>
+			<th><a href="listPage?colName=name">Имя</a></th>
+			<th><a href="listPage?colName=surname">Фамилия</a></th>
+			<th><a href="listPage?colName=login">Логин</a></th>
+			<th><a href="listPage?colName=email">E-mail</a></th>
+			<th><a href="listPage?colName=phone_number">Телефон</a></th>
 		</tr>
 		<c:forEach items="${users}" var="users">
 			<tr>
@@ -40,10 +40,10 @@ ul li {
 	</table>
 
 	<br />
-	<c:forEach items="${numb}" var="numb">
+	<c:forEach items="${page}" var="page">
 		<ul>
 			<li>-</li>
-			<li><a href="listPage" name="${numb}">${numb}</a></li>
+			<li><a href="listPage?page=${page}">${page}</a></li>
 		</ul>
 	</c:forEach>
 	<br />

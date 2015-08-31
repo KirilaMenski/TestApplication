@@ -16,8 +16,11 @@
 	<!--<input id="title" name="title">
 	<a href="convert">Добавить</a>-->
 	<form action="addUsers" method="POST">
-		<input type="text" name="title" /> <input type="submit" name="submit"
+		<input type="text" name="title" size="30" placeholder="D:\folder\file.csv"/> <input type="submit" name="submit"
 			value="Добавить" />
 	</form>
+	<br/>
+	<br/>
+	Update работает, к сожалению, только если в файле одна строка со значениями
 </body>
 </html>
