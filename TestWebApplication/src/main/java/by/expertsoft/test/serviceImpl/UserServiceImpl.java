@@ -31,17 +31,23 @@ public class UserServiceImpl implements UserService{
 		return users;
 	}
 
-	public List<User> getAllUser(int numb) throws SQLException {
-		return null;
+	public List<User> getAllUser(int page) throws SQLException {
+		List<User> userOnPage = new ArrayList<User>();
+		userOnPage = userDAO.getAllUser(page);
+		return userOnPage;
 	}
 
 	public List<User> sortByColumnName(String colName) throws SQLException {
-		return null;
+		List<User> assortedUsers = new ArrayList<User>();
+		assortedUsers = userDAO.sortByColumnName(colName);
+		return assortedUsers;
 	}
 
-	public List<User> sortByColumnName(String colName, int numb)
+	public List<User> sortByColumnName(String colName, int page)
 			throws SQLException {
-		return null;
+		List<User> assortedUsers = new ArrayList<User>();
+		assortedUsers = userDAO.sortByColumnName(colName, page);
+		return assortedUsers;
 	}
 
 }

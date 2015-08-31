@@ -13,7 +13,7 @@ import by.expertsoft.test.entity.User;
 import by.expertsoft.test.util.ConnectionPool;
 
 public class UserDAOImpl implements UserDAO {
-	
+
 	public static final int MAX_RES = 10;
 
 	public void addUser(User user) throws SQLException {
@@ -79,50 +79,158 @@ public class UserDAOImpl implements UserDAO {
 		Connection connection = null;
 		Statement statement = null;
 		ResultSet resultSet = null;
-		
-		try{
-			
+
+		try {
+
 			connection = ConnectionPool.getConnection();
 			statement = connection.createStatement();
 			resultSet = statement.executeQuery("SELECT * FROM user");
-			while(resultSet.next()){
+			while (resultSet.next()) {
 				long id = resultSet.getLong("id");
 				String name = resultSet.getString("name");
 				String surname = resultSet.getString("surname");
 				String login = resultSet.getString("login");
 				String email = resultSet.getString("email");
 				int phoneNumber = resultSet.getInt("phone_number");
-				users.add(new User(id, name, surname, login, email,phoneNumber));
+				users.add(new User(id, name, surname, login, email, phoneNumber));
 			}
-			
-		}catch(SQLException e){
+
+		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally{
-			if(resultSet != null){
+		} finally {
+			if (resultSet != null) {
 				resultSet.close();
 			}
-			if(connection != null){
+			if (connection != null) {
 				connection.close();
 			}
-			if(statement != null){
+			if (statement != null) {
 				statement.close();
 			}
 		}
-		
+
 		return users;
 	}
 
-	public List<User> getAllUser(int numb) throws SQLException {
-		return null;
+	public List<User> getAllUser(int page) throws SQLException {
+		List<User> users = new ArrayList<User>();
+		Connection connection = null;
+		Statement statement = null;
+		ResultSet resultSet = null;
+
+		try {
+
+			connection = ConnectionPool.getConnection();
+			statement = connection.createStatement();
+			resultSet = statement.executeQuery("SELECT * FROM user LIMIT "
+					+ (page * MAX_RES - MAX_RES) + ", " + MAX_RES + ";");
+			while (resultSet.next()) {
+				long id = resultSet.getLong("id");
+				String name = resultSet.getString("name");
+				String surname = resultSet.getString("surname");
+				String login = resultSet.getString("login");
+				String email = resultSet.getString("email");
+				int phoneNumber = resultSet.getInt("phone_number");
+				users.add(new User(id, name, surname, login, email, phoneNumber));
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (resultSet != null) {
+				resultSet.close();
+			}
+			if (connection != null) {
+				connection.close();
+			}
+			if (statement != null) {
+				statement.close();
+			}
+		}
+
+		return users;
 	}
 
 	public List<User> sortByColumnName(String colName) throws SQLException {
-		return null;
+		List<User> assortedUsers = new ArrayList<User>();
+		Connection connection = null;
+		Statement statement = null;
+		ResultSet resultSet = null;
+
+		try {
+
+			connection = ConnectionPool.getConnection();
+			statement = connection.createStatement();
+			resultSet = statement.executeQuery("SELECT * FROM user ORDER BY "
+					+ colName + ";");
+			while (resultSet.next()) {
+				long id = resultSet.getLong("id");
+				String name = resultSet.getString("name");
+				String surname = resultSet.getString("surname");
+				String login = resultSet.getString("login");
+				String email = resultSet.getString("email");
+				int phoneNumber = resultSet.getInt("phone_number");
+				assortedUsers.add(new User(id, name, surname, login, email,
+						phoneNumber));
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (resultSet != null) {
+				resultSet.close();
+			}
+			if (connection != null) {
+				connection.close();
+			}
+			if (statement != null) {
+				statement.close();
+			}
+		}
+
+		return assortedUsers;
 	}
 
-	public List<User> sortByColumnName(String colName, int numb)
+	public List<User> sortByColumnName(String colName, int page)
 			throws SQLException {
-		return null;
+		List<User> assortedUsers = new ArrayList<User>();
+		Connection connection = null;
+		Statement statement = null;
+		ResultSet resultSet = null;
+
+		try {
+
+			connection = ConnectionPool.getConnection();
+			statement = connection.createStatement();
+			resultSet = statement.executeQuery("SELECT * FROM user ORDER BY "
+					+ colName + " LIMIT " + (page * MAX_RES - MAX_RES) + ", "
+					+ MAX_RES + ";");
+			while (resultSet.next()) {
+				long id = resultSet.getLong("id");
+				String name = resultSet.getString("name");
+				String surname = resultSet.getString("surname");
+				String login = resultSet.getString("login");
+				String email = resultSet.getString("email");
+				int phoneNumber = resultSet.getInt("phone_number");
+				assortedUsers.add(new User(id, name, surname, login, email,
+						phoneNumber));
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (resultSet != null) {
+				resultSet.close();
+			}
+			if (connection != null) {
+				connection.close();
+			}
+			if (statement != null) {
+				statement.close();
+			}
+		}
+
+		return assortedUsers;
 	}
 
 }

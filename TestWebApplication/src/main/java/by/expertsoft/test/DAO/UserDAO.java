@@ -12,10 +12,10 @@ public interface UserDAO {
 
 	public List<User> getAllUser() throws SQLException;
 
-	public List<User> getAllUser(int numb) throws SQLException;
+	public List<User> getAllUser(int page) throws SQLException;
 
 	public List<User> sortByColumnName(String colName) throws SQLException;
 
-	public List<User> sortByColumnName(String colName, int numb)
+	public List<User> sortByColumnName(String colName, int page)
 			throws SQLException;
 }

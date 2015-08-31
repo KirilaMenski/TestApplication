@@ -37,7 +37,7 @@ public class UsersConvertImpl implements UsersConvert {
 		}
 	}
 
-	public void editUsers(User user) throws SQLException {
+	public void editUsers(User user, long id) throws SQLException {
 		Connection connection = null;
 		PreparedStatement prepStatment = null;
 
@@ -51,7 +51,7 @@ public class UsersConvertImpl implements UsersConvert {
 			prepStatment.setString(3, user.getLogin());
 			prepStatment.setString(4, user.getEmail());
 			prepStatment.setInt(5, user.getPhoneNumb());
-			prepStatment.setLong(6, user.getId());
+			prepStatment.setLong(6, id);
 			prepStatment.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

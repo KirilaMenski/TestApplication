@@ -30,8 +30,6 @@ public class AddUsersController extends HttpServlet {
 		
 		readerCSV.convertToBD(title);
 		
-//		RequestDispatcher dispatcher = request.getRequestDispatcher("/listPage");
-//		dispatcher.forward(request, response);
 		response.sendRedirect("listPage");
 
 	}
